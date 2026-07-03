@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "This package measures the position, velocity, acceleration, and direction in real time when you physically drag a browser window.",
   "keywords": [
-    "window",
-    "drag",
-    "position",
-    "velocity",
     "acceleration",
+    "drag",
     "motion",
     "physics",
+    "position",
     "shake-detection",
-    "typescript"
+    "typescript",
+    "velocity",
+    "window"
   ],
   "homepage": "https://github.com/273Do/winertia#readme",
   "bugs": {
