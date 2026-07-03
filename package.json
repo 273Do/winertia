@@ -1,0 +1,36 @@
+{
+  "name": "@273do/winertia",
+  "version": "0.1.0",
+  "description": "This package measures the position, velocity, acceleration, and direction in real time when you physically drag a browser window.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/273Do/winertia.git"
+  },
+  "author": "273*",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/273Do/winertia/issues"
+  },
+  "homepage": "https://github.com/273Do/winertia#readme",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}
