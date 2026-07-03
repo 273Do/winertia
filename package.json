@@ -29,6 +29,8 @@
     "test": "vp test run"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-conventional": "^21.2.0",
     "jsdom": "^29.1.1",
     "typescript": "^6.0.3",
     "vite-plus": "0.2.2"
@@ -42,5 +44,6 @@
       "version": "11.16.0",
       "onFail": "download"
     }
-  }
+  },
+  "packageManager": "npm@11.18.0"
 }
