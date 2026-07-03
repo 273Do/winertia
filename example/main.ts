@@ -1,6 +1,5 @@
 import { createWindowTracker } from "../src/index.ts";
 
-const tracker = createWindowTracker();
 const output = document.querySelector<HTMLPreElement>("#state");
 const arrow = document.querySelector<HTMLDivElement>("#arrow");
 const angle = document.querySelector<HTMLSpanElement>("#angle");
@@ -8,6 +7,8 @@ const position = document.querySelector<HTMLSpanElement>("#position");
 const speed = document.querySelector<HTMLSpanElement>("#speed");
 const accel = document.querySelector<HTMLSpanElement>("#accel");
 const shake = document.querySelector<HTMLSpanElement>("#shake");
+
+const tracker = createWindowTracker();
 
 const loop = () => {
   const state = tracker.update(performance.now(), 4000);
