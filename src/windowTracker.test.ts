@@ -4,7 +4,7 @@ import { createWindowTracker } from "./windowTracker.js";
 
 let currentNow = 0;
 
-const setScreenPosition = (x: number, y: number) => {
+const setScreenCoord = (x: number, y: number) => {
   Object.defineProperty(window, "screenX", { value: x, configurable: true });
   Object.defineProperty(window, "screenY", { value: y, configurable: true });
 };
@@ -12,7 +12,7 @@ const setScreenPosition = (x: number, y: number) => {
 beforeEach(() => {
   currentNow = 0;
   vi.spyOn(performance, "now").mockImplementation(() => currentNow);
-  setScreenPosition(0, 0);
+  setScreenCoord(0, 0);
 });
 
 afterEach(() => {
@@ -24,7 +24,7 @@ describe("createWindowTracker", () => {
     const tracker = createWindowTracker();
 
     currentNow = 1000;
-    setScreenPosition(10, 0);
+    setScreenCoord(10, 0);
     expect(tracker.update(currentNow, 999999)).not.toBeNull();
 
     // 時刻を進めずに再度呼び出す
@@ -35,11 +35,11 @@ describe("createWindowTracker", () => {
     const tracker = createWindowTracker({ emaAlpha: 1 });
 
     currentNow = 1000; // 1秒後
-    setScreenPosition(100, 0); // x方向に100px移動
+    setScreenCoord(100, 0); // x方向に100px移動
     const state = tracker.update(currentNow, 999999);
 
     expect(state).not.toBeNull();
-    expect(state?.position).toEqual({ x: 100, y: 0 });
+    expect(state?.coord).toEqual({ x: 100, y: 0 });
     expect(state?.velocity.x).toBeCloseTo(100); // 100px / 1s
     expect(state?.velocity.y).toBeCloseTo(0);
     expect(state?.velocity.speed).toBeCloseTo(100);
@@ -55,7 +55,7 @@ describe("createWindowTracker", () => {
     });
 
     currentNow = 1000;
-    setScreenPosition(10, 0); // 10px/s < 40 のしきい値
+    setScreenCoord(10, 0); // 10px/s < 40 のしきい値
     const state = tracker.update(currentNow, 999999);
 
     expect(state?.direction.idle).toBe(true);
@@ -73,7 +73,7 @@ describe("createWindowTracker", () => {
     });
 
     currentNow = 1000;
-    setScreenPosition(100, 0); // 右方向
+    setScreenCoord(100, 0); // 右方向
     const state = tracker.update(currentNow, 999999);
 
     expect(state?.direction.idle).toBe(false);
@@ -92,21 +92,21 @@ describe("createWindowTracker", () => {
     // 1回目: 大きく加速 -> シェイク検出
     // ( lastShakeAt の初期値は0なので、cooldown 分は経過させておく)
     currentNow = 600;
-    setScreenPosition(1000, 0);
+    setScreenCoord(1000, 0);
     const first = tracker.update(currentNow, shakeAccelThreshold);
     expect(first?.didShake).toBe(true);
     expect(first?.shakeCount).toBe(1);
 
     // 2回目: クールダウン中(100ms後)に再び大きく加速 -> 検出されない
     currentNow = 700;
-    setScreenPosition(5000, 0);
+    setScreenCoord(5000, 0);
     const second = tracker.update(currentNow, shakeAccelThreshold);
     expect(second?.didShake).toBe(false);
     expect(second?.shakeCount).toBe(1);
 
     // 3回目: クールダウン経過後(600ms後)に大きく加速 -> 再び検出される
     currentNow = 1300;
-    setScreenPosition(20000, 0);
+    setScreenCoord(20000, 0);
     const third = tracker.update(currentNow, shakeAccelThreshold);
     expect(third?.didShake).toBe(true);
     expect(third?.shakeCount).toBe(2);
@@ -118,7 +118,7 @@ describe("createWindowTracker", () => {
     let lastState = tracker.update(0, 999999); // 経過時間0なのでnull想定
     for (let i = 1; i <= 5; i++) {
       currentNow = i * 100;
-      setScreenPosition(i * 10, 0);
+      setScreenCoord(i * 10, 0);
       lastState = tracker.update(currentNow, 999999);
     }
 
@@ -127,7 +127,7 @@ describe("createWindowTracker", () => {
 
     // さらに update しても、以前取得した history は変化しない
     currentNow = 600;
-    setScreenPosition(60, 0);
+    setScreenCoord(60, 0);
     tracker.update(currentNow, 999999);
 
     expect(lastState?.history).toEqual(snapshot);

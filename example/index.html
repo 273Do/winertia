@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>winertia playground</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 2rem;
+      }
+
+      .layout {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+
+      #state {
+        flex: 1;
+        background: #f4f4f4;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow: auto;
+      }
+
+      .panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      .metric {
+        display: flex;
+        align-items: baseline;
+        justify-content: end;
+        gap: 0.5rem;
+      }
+
+      .arrow {
+        font-size: 6rem;
+        line-height: 1;
+        transition:
+          transform 0.1s linear,
+          opacity 0.2s linear;
+      }
+
+      .arrow.idle {
+        opacity: 0.2;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 0.5rem 1rem;
+        width: 100%;
+      }
+
+      .metrics .label {
+        font-size: 1rem;
+        color: #666;
+        align-self: center;
+      }
+
+      .metrics .value {
+        font-size: 2.5rem;
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>winertia example</h1>
+    <p>You can drag and drop the browser to see the values change in real time.</p>
+    <div class="layout">
+      <pre id="state">waiting for movement...</pre>
+      <div class="panel">
+        <div class="arrow" id="arrow">&#8594;</div>
+        <div class="metrics">
+          <span class="label">Angle</span>
+          <div class="metric">
+            <span class="value" id="angle">0</span>
+            <span class="unit">deg</span>
+          </div>
+          <span class="label">Position</span>
+          <div class="metric">
+            <span class="value" id="position">0, 0</span>
+            <span class="unit">px</span>
+          </div>
+          <span class="label">Speed</span>
+          <div class="metric">
+            <span class="value" id="speed">0</span>
+            <span class="unit">px/s</span>
+          </div>
+          <span class="label">Acceleration</span>
+          <div class="metric">
+            <span class="value" id="accel">0</span>
+            <span class="unit">px/s&sup2;</span>
+          </div>
+          <span class="label">Shake Count</span>
+          <div class="metric">
+            <span class="value" id="shake">0</span>
+            <span class="unit">count</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
