@@ -23,7 +23,7 @@ export default defineConfig({
     },
   },
   staged: {
-    "*.{js,ts}": "vp check --fix",
+    "*.{js,ts}": "vp check --fix && vp test",
   },
   lint: { options: { typeAware: true, typeCheck: true } },
 });
