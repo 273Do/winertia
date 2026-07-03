@@ -8,8 +8,7 @@ import type {
 type Vec2 = { x: number; y: number };
 
 /** 指数移動平均で prev を target に近づける */
-const ema = (prev: number, target: number, alpha: number): number =>
-  prev + (target - prev) * alpha;
+const ema = (prev: number, target: number, alpha: number): number => prev + (target - prev) * alpha;
 
 export const createWindowTracker = ({
   emaAlpha = 0.25,
@@ -29,10 +28,7 @@ export const createWindowTracker = ({
 
   const history: AccelerationObj[] = [];
 
-  const update = (
-    now: number,
-    shakeAccelThreshold: number,
-  ): MotionStateObj | null => {
+  const update = (now: number, shakeAccelThreshold: number): MotionStateObj | null => {
     // 前フレームからの経過時間(秒)。0以下なら同一/逆行タイムスタンプなのでスキップ
     const dt = (now - lastTime) / 1000;
     if (dt <= 0) return null;
@@ -49,16 +45,8 @@ export const createWindowTracker = ({
     smoothVelocity.y = ema(smoothVelocity.y, dy / dt, emaAlpha);
 
     // 平滑化速度の変化率(=瞬間加速度)を求め、さらにEMAで平滑化する
-    smoothAccel.x = ema(
-      smoothAccel.x,
-      (smoothVelocity.x - prevSmoothVelocity.x) / dt,
-      emaAlpha,
-    );
-    smoothAccel.y = ema(
-      smoothAccel.y,
-      (smoothVelocity.y - prevSmoothVelocity.y) / dt,
-      emaAlpha,
-    );
+    smoothAccel.x = ema(smoothAccel.x, (smoothVelocity.x - prevSmoothVelocity.x) / dt, emaAlpha);
+    smoothAccel.y = ema(smoothAccel.y, (smoothVelocity.y - prevSmoothVelocity.y) / dt, emaAlpha);
 
     // 加速度・速度それぞれのベクトルの大きさ
     const accelMagnitude = Math.hypot(smoothAccel.x, smoothAccel.y);
@@ -68,9 +56,7 @@ export const createWindowTracker = ({
     const idle = speed < idleSpeedThreshold;
 
     // 移動方向の角度。screenYは下方向が正なので符号を反転して数学的な座標系に合わせる
-    const angleDeg = idle
-      ? 0
-      : (Math.atan2(-smoothVelocity.y, smoothVelocity.x) * 180) / Math.PI;
+    const angleDeg = idle ? 0 : (Math.atan2(-smoothVelocity.y, smoothVelocity.x) * 180) / Math.PI;
 
     // 単位ベクトル算出用に速度の逆数を先に1回だけ計算し、割り算を減らす
     const invSpeed = idle ? 0 : 1 / speed;
@@ -85,10 +71,7 @@ export const createWindowTracker = ({
 
     // 加速度が閾値を超え、かつ前回検出からクールダウン時間が経過していればシェイクとみなす
     let didShake = false;
-    if (
-      accelMagnitude > shakeAccelThreshold &&
-      now - lastShakeAt > shakeCooldownMs
-    ) {
+    if (accelMagnitude > shakeAccelThreshold && now - lastShakeAt > shakeCooldownMs) {
       lastShakeAt = now;
       shakeCount += 1;
       didShake = true;
