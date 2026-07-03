@@ -39,6 +39,7 @@
     "access": "public"
   },
   "scripts": {
+    "dev": "vp dev example",
     "build": "vp pack",
     "test": "vp test run"
   },
@@ -51,13 +52,6 @@
   },
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.2"
-  },
-  "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "11.16.0",
-      "onFail": "download"
-    }
   },
   "packageManager": "npm@11.16.0"
 }
