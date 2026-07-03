@@ -86,3 +86,7 @@ Returns `null` if the elapsed time since the previous call is zero or negative (
 | `didShake`      | `boolean`                          | Whether a shake was detected on this call.                                     |
 | `history`       | `{ x, y, magnitude }[]`            | Recent acceleration samples, up to `historyLength`.                            |
 | `historyLength` | `number`                           | The configured history size limit.                                             |
+
+## Disclaimer
+
+I, those associated with me, and any organization or group I belong to accept no responsibility whatsoever for any faults, damages, or defects arising from the use of this work and its accompanying materials. Use it at your own risk.

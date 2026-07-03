@@ -86,3 +86,7 @@ update(now: number, shakeAccelThreshold: number): MotionStateObj | null
 | `didShake`      | `boolean`                          | 今回の呼び出しでシェイクを検出したかどうか。                         |
 | `history`       | `{ x, y, magnitude }[]`            | 直近の加速度サンプル履歴。                                           |
 | `historyLength` | `number`                           | 加速度サンプル履歴の保持上限件数。                                   |
+
+## 免責事項
+
+この作成物および同梱物を使用したことによって生じたすべての障害・損害・不具合等に関しては、私と私の関係者および私の所属するいかなる団体・組織とも、一切の責任を負いません。各自の責任においてご使用ください。
