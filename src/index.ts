@@ -3,7 +3,7 @@ export type {
   AccelerationObj,
   DirectionObj,
   MotionStateObj,
-  PositionObj,
+  CoordObj,
   VelocityObj,
   WindowTrackerObj,
   WindowTrackerOptions,

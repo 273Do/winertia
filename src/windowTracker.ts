@@ -14,10 +14,10 @@ export const createWindowTracker = ({
   emaAlpha = 0.25,
   historyLength = 240,
   idleSpeedThreshold = 40,
-  shakeCooldownMs = 500,
+  shakeCooldownMs = 200,
 }: WindowTrackerOptions = {}): WindowTrackerObj => {
   let lastTime: number = performance.now();
-  const lastPosition: Vec2 = { x: window.screenX, y: window.screenY };
+  const lastCoord: Vec2 = { x: window.screenX, y: window.screenY };
 
   const prevSmoothVelocity: Vec2 = { x: 0, y: 0 };
   const smoothVelocity: Vec2 = { x: 0, y: 0 };
@@ -37,8 +37,8 @@ export const createWindowTracker = ({
     const y: number = window.screenY;
 
     // 前フレームからの移動量(px)
-    const dx: number = x - lastPosition.x;
-    const dy: number = y - lastPosition.y;
+    const dx: number = x - lastCoord.x;
+    const dy: number = y - lastCoord.y;
 
     // 瞬間速度(px/s) = 移動量/経過時間 をEMAで平滑化し、フレーム間のノイズを抑える
     smoothVelocity.x = ema(smoothVelocity.x, dx / dt, emaAlpha);
@@ -78,14 +78,14 @@ export const createWindowTracker = ({
     }
 
     // 次フレームの差分計算のために今回の値を保存
-    lastPosition.x = x;
-    lastPosition.y = y;
+    lastCoord.x = x;
+    lastCoord.y = y;
     lastTime = now;
     prevSmoothVelocity.x = smoothVelocity.x;
     prevSmoothVelocity.y = smoothVelocity.y;
 
     const result: MotionStateObj = {
-      position: { x, y },
+      coord: { x, y },
       velocity: { x: smoothVelocity.x, y: smoothVelocity.y, speed },
       acceleration: {
         x: smoothAccel.x,

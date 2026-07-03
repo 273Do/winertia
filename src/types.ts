@@ -16,7 +16,7 @@ export type WindowTrackerObj = {
 };
 
 /** 位置 */
-export type PositionObj = {
+export type CoordObj = {
   /** x 座標 */
   x: number;
   /** y 座標 */
@@ -58,7 +58,7 @@ export type DirectionObj = {
 /** モーションの状態 */
 export type MotionStateObj = {
   /** 位置 */
-  position: PositionObj;
+  coord: CoordObj;
   /** 速度 */
   velocity: VelocityObj;
   /** 加速度 */
