@@ -1,4 +1,5 @@
 /node_modules
 /dist
+/example/dist
 
 .DS_Store
