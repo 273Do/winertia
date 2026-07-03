@@ -12,9 +12,9 @@ const ema = (prev: number, target: number, alpha: number): number => prev + (tar
 
 export const createWindowTracker = ({
   emaAlpha = 0.25,
-  historyLength = 240,
+  historyLength = 50,
   idleSpeedThreshold = 40,
-  shakeCooldownMs = 200,
+  shakeCooldownMs = 300,
 }: WindowTrackerOptions = {}): WindowTrackerObj => {
   let lastTime: number = performance.now();
   const lastCoord: Vec2 = { x: window.screenX, y: window.screenY };
