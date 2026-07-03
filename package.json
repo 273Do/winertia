@@ -2,35 +2,62 @@
   "name": "@273do/winertia",
   "version": "0.1.0",
   "description": "This package measures the position, velocity, acceleration, and direction in real time when you physically drag a browser window.",
-  "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist"
+  "keywords": [
+    "acceleration",
+    "drag",
+    "motion",
+    "physics",
+    "position",
+    "shake-detection",
+    "typescript",
+    "velocity",
+    "window"
   ],
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "test": "vitest run"
+  "homepage": "https://github.com/273Do/winertia#readme",
+  "bugs": {
+    "url": "https://github.com/273Do/winertia/issues"
   },
+  "license": "MIT",
+  "author": "273*",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/273Do/winertia.git"
   },
-  "author": "273*",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/273Do/winertia/issues"
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
   },
-  "homepage": "https://github.com/273Do/winertia#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "test": "vp test run"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-conventional": "^21.2.0",
     "jsdom": "^29.1.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
-  }
+    "vite-plus": "0.2.2"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.2"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": "11.16.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "npm@11.16.0"
 }
