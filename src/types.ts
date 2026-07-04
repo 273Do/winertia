@@ -25,23 +25,15 @@ export type CoordObj = {
 
 /** 速度 */
 export type VelocityObj = {
-  /** 速度のx成分 */
-  x: number;
-  /** 速度のy成分 */
-  y: number;
   /** 速度の大きさ */
   speed: number;
-};
+} & CoordObj;
 
 /** 加速度 */
 export type AccelerationObj = {
-  /** 加速度のx成分 */
-  x: number;
-  /** 加速度のy成分 */
-  y: number;
   /** 加速度の大きさ */
   magnitude: number;
-};
+} & CoordObj;
 
 /** 方向 */
 export type DirectionObj = {
