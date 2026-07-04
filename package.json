@@ -46,7 +46,10 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.0",
     "@commitlint/config-conventional": "^21.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "jsdom": "^29.1.1",
+    "semantic-release": "^25.0.5",
     "typescript": "^6.0.3",
     "vite-plus": "0.2.2"
   },
