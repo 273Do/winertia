@@ -10,6 +10,7 @@ export default defineConfig({
     dts: true,
   },
   fmt: {
+    ignorePatterns: ["CHANGELOG.md"],
     sortImports: {
       newlinesBetween: true,
       groups: [
