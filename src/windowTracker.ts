@@ -1,11 +1,10 @@
 import type {
   AccelerationObj,
+  CoordObj,
   MotionStateObj,
   WindowTrackerObj,
   WindowTrackerOptions,
 } from "./types.js";
-
-type Vec2 = { x: number; y: number };
 
 /** 指数移動平均で prev を target に近づける */
 const ema = (prev: number, target: number, alpha: number): number => prev + (target - prev) * alpha;
@@ -17,11 +16,11 @@ export const createWindowTracker = ({
   shakeCooldownMs = 300,
 }: WindowTrackerOptions = {}): WindowTrackerObj => {
   let lastTime: number = performance.now();
-  const lastCoord: Vec2 = { x: window.screenX, y: window.screenY };
+  const lastCoord: CoordObj = { x: window.screenX, y: window.screenY };
 
-  const prevSmoothVelocity: Vec2 = { x: 0, y: 0 };
-  const smoothVelocity: Vec2 = { x: 0, y: 0 };
-  const smoothAccel: Vec2 = { x: 0, y: 0 };
+  const prevSmoothVelocity: CoordObj = { x: 0, y: 0 };
+  const smoothVelocity: CoordObj = { x: 0, y: 0 };
+  const smoothAccel: CoordObj = { x: 0, y: 0 };
 
   let shakeCount: number = 0;
   let lastShakeAt: number = 0;
