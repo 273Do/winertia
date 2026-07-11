@@ -11,6 +11,9 @@ const shake = document.querySelector<HTMLSpanElement>("#shake");
 
 const tracker = createWindowTracker();
 
+let prevAngleDeg = 0;
+let displayRotation = 0;
+
 if (!tracker.supportsWinertia) {
   if (output) output.textContent = "This device is not supported.";
   if (panel) panel.style.opacity = "0.3";
@@ -26,7 +29,12 @@ const loop = () => {
     if (output) output.textContent = JSON.stringify(state, null, 2);
 
     if (arrow) {
-      arrow.style.transform = `rotate(${-direction.angleDeg}deg)`;
+      let delta = direction.angleDeg - prevAngleDeg;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      displayRotation += delta;
+      prevAngleDeg = direction.angleDeg;
+      arrow.style.transform = `rotate(${-displayRotation}deg)`;
       arrow.classList.toggle("idle", direction.idle);
     }
 
