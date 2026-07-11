@@ -1,6 +1,7 @@
 import { createWindowTracker } from "../src/index.ts";
 
 const output = document.querySelector<HTMLPreElement>("#state");
+const panel = document.querySelector<HTMLDivElement>(".panel");
 const arrow = document.querySelector<HTMLDivElement>("#arrow");
 const angle = document.querySelector<HTMLSpanElement>("#angle");
 const position = document.querySelector<HTMLSpanElement>("#position");
@@ -10,7 +11,13 @@ const shake = document.querySelector<HTMLSpanElement>("#shake");
 
 const tracker = createWindowTracker();
 
+if (!tracker.supportsWinertia) {
+  if (output) output.textContent = "This device is not supported.";
+  if (panel) panel.style.opacity = "0.3";
+}
+
 const loop = () => {
+  if (!tracker.supportsWinertia) return;
   const state = tracker.update(performance.now(), 4000);
 
   if (state) {
