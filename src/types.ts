@@ -11,6 +11,8 @@ export type WindowTrackerOptions = {
 };
 
 export type WindowTrackerObj = {
+  /** winertia が有効なデバイスかどうか */
+  supportsWinertia: boolean;
   /** トラッカーを1フレーム進めて新しい状態を返す。dtが0以下の場合はnull */
   update: (now: number, shakeAccelThreshold: number) => MotionStateObj | null;
 };

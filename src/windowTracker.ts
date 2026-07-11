@@ -27,7 +27,15 @@ export const createWindowTracker = ({
 
   const history: AccelerationObj[] = [];
 
+  const supportsWinertia: boolean =
+    typeof window !== "undefined" &&
+    "screenX" in window &&
+    "screenY" in window &&
+    !window.matchMedia("(pointer: coarse)").matches;
+
   const update = (now: number, shakeAccelThreshold: number): MotionStateObj | null => {
+    if (!supportsWinertia) return null;
+
     // 前フレームからの経過時間(秒)。0以下なら同一/逆行タイムスタンプなのでスキップ
     const dt = (now - lastTime) / 1000;
     if (dt <= 0) return null;
@@ -106,5 +114,5 @@ export const createWindowTracker = ({
     return result;
   };
 
-  return { update };
+  return { supportsWinertia, update };
 };
