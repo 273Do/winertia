@@ -4,6 +4,8 @@
 
 ブラウザウィンドウを物理的にドラッグしたときの位置・速度・加速度・方向をリアルタイムに計測します。
 
+https://github.com/user-attachments/assets/0a80e880-22ac-4a47-b0c2-5058d45c8176
+
 ## インストール
 
 ```bash
