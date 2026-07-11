@@ -1,6 +1,7 @@
 import { createWindowTracker } from "../src/index.ts";
 
 const output = document.querySelector<HTMLPreElement>("#state");
+const panel = document.querySelector<HTMLDivElement>(".panel");
 const arrow = document.querySelector<HTMLDivElement>("#arrow");
 const angle = document.querySelector<HTMLSpanElement>("#angle");
 const position = document.querySelector<HTMLSpanElement>("#position");
@@ -10,7 +11,16 @@ const shake = document.querySelector<HTMLSpanElement>("#shake");
 
 const tracker = createWindowTracker();
 
+let prevAngleDeg = 0;
+let displayRotation = 0;
+
+if (!tracker.supportsWinertia) {
+  if (output) output.textContent = "This device is not supported.";
+  if (panel) panel.style.opacity = "0.3";
+}
+
 const loop = () => {
+  if (!tracker.supportsWinertia) return;
   const state = tracker.update(performance.now(), 4000);
 
   if (state) {
@@ -19,7 +29,12 @@ const loop = () => {
     if (output) output.textContent = JSON.stringify(state, null, 2);
 
     if (arrow) {
-      arrow.style.transform = `rotate(${-direction.angleDeg}deg)`;
+      let delta = direction.angleDeg - prevAngleDeg;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      displayRotation += delta;
+      prevAngleDeg = direction.angleDeg;
+      arrow.style.transform = `rotate(${-displayRotation}deg)`;
       arrow.classList.toggle("idle", direction.idle);
     }
 

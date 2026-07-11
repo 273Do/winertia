@@ -4,6 +4,8 @@
 
 Measures the position, velocity, acceleration, and direction in real time when you physically drag a browser window.
 
+https://github.com/user-attachments/assets/0a80e880-22ac-4a47-b0c2-5058d45c8176
+
 ## Installation
 
 ```bash
