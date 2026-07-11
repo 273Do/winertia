@@ -79,7 +79,7 @@ update(now: number, shakeAccelThreshold: number): MotionStateObj | null
 | `now`                 | `number` | 現在のタイムスタンプ。通常は`performance.now()`。前回呼び出しからの経過時間の計算に使う。 |
 | `shakeAccelThreshold` | `number` | シェイクと判定する加速度の大きさ (px/s²)。                                                |
 
-前回の呼び出しからの経過時間が0以下の場合(同じタイムスタンプで`update`が2回呼ばれた場合など)は`null`を返します。それ以外は`MotionStateObj`を返します。
+`supportsWinertia` が `false` の場合、または前回の呼び出しからの経過時間が0以下の場合(同じタイムスタンプで`update`が2回呼ばれた場合など)は`null`を返します。それ以外は`MotionStateObj`を返します。
 
 | フィールド      | 型                                 | 説明                                                                 |
 | --------------- | ---------------------------------- | -------------------------------------------------------------------- |
