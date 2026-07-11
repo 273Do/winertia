@@ -1,3 +1,24 @@
+# [1.1.0](https://github.com/273Do/winertia/compare/v1.0.0...v1.1.0) (2026-07-11)
+
+
+### Bug Fixes
+
+* test ([09559f4](https://github.com/273Do/winertia/commit/09559f451afc56bbecce5b87d61f903a46ef5106))
+* the arrow behavior on the example page ([d37c2d1](https://github.com/273Do/winertia/commit/d37c2d1d5b94684e364d9b9c7719e707bcb10e17))
+
+
+### Features
+
+* add handling for unsupported devices ([2907d36](https://github.com/273Do/winertia/commit/2907d368c1dc510375ef1bab00c687ad21b63192))
+* add movie to readme ([ea185ac](https://github.com/273Do/winertia/commit/ea185ac742abdc1c7b17c34970e010bcf23da32b))
+* add movie to readme-ja ([1572f7b](https://github.com/273Do/winertia/commit/1572f7bc1f07a65164076498c7247b816a22b10e))
+* add test ([b723671](https://github.com/273Do/winertia/commit/b72367105176dded743747e05cc6df3e7f304a6a))
+* add winertia support flag ([a06ca38](https://github.com/273Do/winertia/commit/a06ca38c94ea44ef80fa8d5dd5d032f3d087a1a7))
+* if supportsWinertia is not enabled, update returns null ([7b47c15](https://github.com/273Do/winertia/commit/7b47c156c00dd0137ca323da7b497e0b51b587b1))
+* merge branch 'main' into develop ([5279295](https://github.com/273Do/winertia/commit/527929504c26d87a4e8526e258a4b4e342deb24c))
+* update readme ([7d67f8a](https://github.com/273Do/winertia/commit/7d67f8ae97d5742dc6e5a8050f092fed0c713cea))
+* update readme ([723c671](https://github.com/273Do/winertia/commit/723c671b03afef105ac55465330278cf0c5acfde))
+
 # 1.0.0 (2026-07-04)
 
 

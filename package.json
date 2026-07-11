@@ -1,6 +1,6 @@
 {
   "name": "@273do/winertia",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This package measures the position, velocity, acceleration, and direction in real time when you physically drag a browser window.",
   "keywords": [
     "acceleration",
