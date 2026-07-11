@@ -11,8 +11,15 @@ const setScreenCoord = (x: number, y: number) => {
 
 beforeEach(() => {
   currentNow = 0;
+
   vi.spyOn(performance, "now").mockImplementation(() => currentNow);
+
   setScreenCoord(0, 0);
+
+  Object.defineProperty(window, "matchMedia", {
+    value: vi.fn().mockReturnValue({ matches: false }),
+    configurable: true,
+  });
 });
 
 afterEach(() => {
