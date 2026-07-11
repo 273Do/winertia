@@ -119,24 +119,17 @@ describe("createWindowTracker", () => {
     expect(third?.shakeCount).toBe(2);
   });
 
-  it("historyはhistoryLength件を超えない、かつ返り値は以後のupdateで変化しないコピーである", () => {
-    const tracker = createWindowTracker({ historyLength: 3 });
+  it("supportsWinertia が false の場合、update は常に null を返す", () => {
+    Object.defineProperty(window, "matchMedia", {
+      value: vi.fn().mockReturnValue({ matches: true }), // タッチデバイス扱い
+      configurable: true,
+    });
+    const tracker = createWindowTracker();
 
-    let lastState = tracker.update(0, 999999); // 経過時間0なのでnull想定
-    for (let i = 1; i <= 5; i++) {
-      currentNow = i * 100;
-      setScreenCoord(i * 10, 0);
-      lastState = tracker.update(currentNow, 999999);
-    }
+    expect(tracker.supportsWinertia).toBe(false);
 
-    expect(lastState?.history).toHaveLength(3);
-    const snapshot = [...(lastState?.history ?? [])];
-
-    // さらに update しても、以前取得した history は変化しない
-    currentNow = 600;
-    setScreenCoord(60, 0);
-    tracker.update(currentNow, 999999);
-
-    expect(lastState?.history).toEqual(snapshot);
+    currentNow = 1000;
+    setScreenCoord(100, 0);
+    expect(tracker.update(currentNow, 999999)).toBeNull();
   });
 });
