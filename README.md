@@ -52,7 +52,12 @@ requestAnimationFrame(loop);
 createWindowTracker(options?: WindowTrackerOptions): WindowTrackerObj
 ```
 
-Creates a tracker instance. The `options` argument is optional, and so is each of its properties. Returns an object exposing a single `update` method (`WindowTrackerObj`, see below).
+Creates a tracker instance. The `options` argument is optional, and so is each of its properties. Returns a `WindowTrackerObj` with the following properties:
+
+| Property           | Type       | Description                                                                                                                                                |
+| ------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `supportsWinertia` | `boolean`  | Whether the current environment supports winertia — requires a non-SSR context, `screenX`/`screenY` availability, and a non-touch (coarse pointer) device. |
+| `update`           | `Function` | Advances the tracker by one frame. See below.                                                                                                              |
 
 | Option               | Type     | Default | Description                                                                               |
 | -------------------- | -------- | ------- | ----------------------------------------------------------------------------------------- |
@@ -74,7 +79,7 @@ Advances the tracker by one frame and returns the current state. Call this every
 | `now`                 | `number` | Current timestamp, typically `performance.now()`. Used to compute elapsed time since the previous call. |
 | `shakeAccelThreshold` | `number` | Acceleration magnitude (px/s²) above which a shake is detected.                                         |
 
-Returns `null` if the elapsed time since the previous call is zero or negative (e.g. `update` called twice with the same timestamp). Otherwise returns a `MotionStateObj`:
+Returns `null` if `supportsWinertia` is `false`, or if the elapsed time since the previous call is zero or negative (e.g. `update` called twice with the same timestamp). Otherwise returns a `MotionStateObj`:
 
 | Field           | Type                               | Description                                                                    |
 | --------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
